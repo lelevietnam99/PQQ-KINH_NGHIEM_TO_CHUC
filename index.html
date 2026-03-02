@@ -3,241 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hành Trình Tổ Chức Thi Thăng Cấp Đai</title>
+    <title>Kinh Nghiệm Tổ Chức Thi - Phật Quang Quyền</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-color: #8B1515; /* Đỏ đô trầm ấm */
-            --secondary-color: #D4AF37; /* Vàng đồng */
-            --bg-color: #F9F7F1; /* Màu nền hơi ngả giấy trang nhã */
-            --text-color: #333333;
+        /* CSS Cơ bản */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6; 
+            color: #333; 
+            margin: 0; 
+            padding: 0; 
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        
+        /* Phần Header */
+        header { 
+            background-color: #8b0000; /* Màu đỏ đô truyền thống, khỏe khoắn */
+            color: white; 
+            padding: 2.5rem 0; 
+            text-align: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom: 5px solid var(--secondary-color);
+        header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; }
+        header p { margin-top: 0.5rem; font-size: 1.2rem; opacity: 0.9; }
+        
+        /* Bố cục lưới cho các mục */
+        .container { 
+            max-width: 1000px; 
+            margin: 3rem auto; 
+            padding: 0 1rem; 
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
         }
-
-        header p {
-            font-size: 1.1em;
-            color: #f1c40f;
-            margin-top: 10px;
-            font-style: italic;
+        
+        /* Thiết kế các thẻ (Card) */
+        .card { 
+            background: white; 
+            border-radius: 10px; 
+            padding: 2rem; 
+            text-align: center; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            text-decoration: none; 
+            color: inherit; 
+            display: block; 
+            border-top: 4px solid #8b0000;
         }
-
-        /* Thiết kế dạng Timeline (Bản đồ hành trình) */
-        .timeline-container {
-            max-width: 900px;
-            margin: 50px auto;
-            position: relative;
-            padding: 0 20px;
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); 
         }
-
-        /* Đường kẻ dọc ở giữa */
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--secondary-color);
-            top: 0;
-            bottom: 0;
-            left: 50px; /* Đặt lệch sang trái để lấy không gian ghi nội dung */
-            border-radius: 2px;
+        .card i { 
+            font-size: 3.5rem; 
+            color: #8b0000; 
+            margin-bottom: 1.2rem; 
         }
-
-        .timeline-item {
-            padding: 20px 0 40px 80px;
-            position: relative;
+        .card h3 { 
+            margin: 0 0 0.8rem 0; 
+            font-size: 1.3rem; 
+            color: #222;
         }
-
-        /* Nút mốc thời gian */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background-color: white;
-            border: 4px solid var(--primary-color);
-            border-radius: 50%;
-            left: 36px;
-            top: 25px;
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        .card p { 
+            color: #666; 
+            font-size: 0.95rem; 
+            margin: 0; 
+            line-height: 1.5;
         }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .timeline-content h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.8em;
-            border-bottom: 2px dashed #eee;
-            padding-bottom: 10px;
-        }
-
-        .timeline-content ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .timeline-content ul li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-        }
-
-        /* Custom bullet point cho danh sách */
-        .timeline-content ul li::before {
-            content: '❖';
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-            line-height: 1.2;
-        }
-
-        /* Style cho phần chèn ảnh */
-        .image-placeholder {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .image-placeholder img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .image-caption {
-            font-size: 0.9em;
-            color: #777;
-            font-style: italic;
-            margin-top: 8px;
-        }
-
-        /* Responsive cho điện thoại */
-        @media screen and (max-width: 600px) {
-            .timeline-container::after {
-                left: 20px;
-            }
-            .timeline-item {
-                padding-left: 50px;
-            }
-            .timeline-item::before {
-                left: 6px;
-            }
+        
+        /* Footer */
+        footer { 
+            text-align: center; 
+            padding: 2rem 0; 
+            margin-top: 2rem; 
+            color: #777; 
+            font-size: 0.9rem; 
+            border-top: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Quy Trình Tổ Chức Thi Thăng Đai</h1>
-        <p>Bản đồ chi tiết các chặng đường thực hiện kì thi môn phái</p>
-    </header>
+<header>
+    <h1>Cẩm Nang Tổ Chức Sự Kiện</h1>
+    <p>Môn phái Phật Quang Quyền</p>
+</header>
 
-    <div class="timeline-container">
+<div class="container">
+    <div class="grid">
+        <a href="tap-huan.html" class="card">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h3>Tổ Chức Tập Huấn Chuyên Môn</h3>
+            <p>Tài liệu lên giáo án, chuẩn bị nhân sự, hậu cần và kinh nghiệm điều hành các buổi tập huấn thực tế.</p>
+        </a>
+
+        <a href="thang-dai.html" class="card">
+            <i class="fa-solid fa-medal"></i>
+            <h3>Thi Thăng Đai Định Kỳ</h3>
+            <p>Quy trình tổ chức, các tiêu chí chấm thi, quản lý danh sách võ sinh và biểu mẫu đánh giá.</p>
+        </a>
+
+        <a href="giai-online.html" class="card">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>Giải Vô Địch Cấp CLB Online</h3>
+            <p>Kinh nghiệm ứng dụng công nghệ, thiết lập luật lệ, nộp video và chấm điểm trực tuyến từ xa.</p>
+        </a>
         
-        <div class="timeline-item">
-            <div class="timeline-content">
-                <h2>1. Trước Khi Kì Thi Diễn Ra</h2>
-                
-                <div class="image-placeholder">
-                    <img src="anh-giai-doan-1.jpg" alt="Công tác chuẩn bị">
-                    <div class="image-caption">Hình ảnh minh họa công tác chuẩn bị trước kì thi</div>
-                </div>
-
-                <ul>
-                    <li>Kịch bản MC</li>
-                    <li>File ảnh Tổ Ngài La Hầu La, file Võ nhạc, file Văn Nghệ</li>
-                    <li>Kế hoạch thi thăng đai</li>
-                    <li>Quyết định Tổ Chức kì thi thăng đai</li>
-                    <li>Sơ đồ thi thăng đai</li>
-                    <li>Chuẩn bị DS các thí sinh thi thăng đai, phân rõ theo từng bàn giám khảo</li>
-                    <li>Chuẩn bị Chương trình huấn luyện và Lý thuyết võ đạo</li>
-                    <li>Chuẩn bị ghim bấm, bút, phiếu thi dự phòng</li>
-                    <li>Thu tiền lệ phí thi</li>
-                    <li>Đặt đai và may đai</li>
-                    <li>Quay bài clip để thi khảo trước khi thi</li>
-                    <li>Chuẩn bị tiền bồi dưỡng cho Ban Huấn Luyện</li>
-                    <li>Chuẩn bị khăn trải bàn, bàn, dụng cụ đối kháng, xà đơn</li>
-                    <li>Thông báo đặt suất ăn, đặt chỗ nghỉ lại</li>
-                    <li>In phiếu thi + văn bằng chứng nhận cho các võ sinh</li>
-                    <li>Chuẩn bị thủ tục nhập môn (nếu có): Thủ tục nghi thức nhập môn, Đơn thỉnh nguyện nhập môn</li>
-                    <li>Kiểm tra các phiếu dự thi (đảm bảo chữ ký của HLV và võ sinh)</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-content">
-                <h2>2. Trong Khi Kì Thi Diễn Ra</h2>
-                
-                <div class="image-placeholder">
-                    <img src="anh-giai-doan-2.jpg" alt="Quá trình thi cử">
-                    <div class="image-caption">Hình ảnh minh họa không khí trong kì thi</div>
-                </div>
-
-                <ul>
-                    <li>Thông báo võ sinh tập trung để khởi động</li>
-                    <li>Tập Trung võ sinh lễ Phật và Lễ Tổ</li>
-                    <li>Phát phiếu dự thi cho các võ sinh</li>
-                    <li>Dự lễ khai mạc kì thi</li>
-                    <li>Văn nghệ khai mạc: Kiểm tra âm thanh, hình ảnh, mic,...</li>
-                    <li>BGK thông báo bắt đầu kì thi</li>
-                    <li>Trong lúc thi, võ sinh nào thi xong, ở các khâu, sẽ nộp lại phiếu thi bàn thư ký để gửi Thầy CM xem duyệt, kí và đóng dấu ĐẠT</li>
-                    <li>Thư ký sẽ tổng hợp các phiếu thi đạt để cộng điểm và dùng máy tính để chọn ra những em thủ khoa, á khoa các cấp đai chuyển tiếp: lam -> lục, lục -> hồng, hồng -> hoàng</li>
-                    <li>Sau khi kết thúc đối kháng: Cộng điểm, tổng kết DS, thống kê thủ khoa, á khoa, tổng số lượng đạt, không đạt, hủy thi và gửi kết quả về bàn giám khảo. <em>(Ghi chú: Trong thời gian này có thể có tiết mục võ nhạc/văn nghệ)</em></li>
-                    <li>Sau khi công bố kết quả xong, thực hiện nghi thức trao đai và đổi đai</li>
-                    <li>Lễ Tổ, lễ Thầy và chụp ảnh kết thúc kì thi</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-content">
-                <h2>3. Sau Khi Kết Thúc Kì Thi</h2>
-                
-                <div class="image-placeholder">
-                    <img src="anh-giai-doan-3.jpg" alt="Hậu kì và tổng kết">
-                    <div class="image-caption">Hình ảnh minh họa công tác tổng kết báo cáo</div>
-                </div>
-
-                <ul>
-                    <li>Ban thư ký sẽ scan kết quả để gửi cho các đơn vị xem kết quả (số lượng đạt, không đạt, hủy thi)</li>
-                    <li>Tổng hợp lại số tiền thu được, gửi báo cáo kết quả chi phí cho Thầy Chưởng Môn</li>
-                    <li>Tổng hợp các bằng chứng nhận không đạt và hủy thi gửi lại cho Thầy Chưởng Môn</li>
-                    <li>Nhắn các đơn vị sao lưu các bằng chứng nhận để phục vụ cho kì thi thăng đai tiếp theo</li>
-                </ul>
-            </div>
-        </div>
-
+        <a href="tai-lieu-khac.html" class="card">
+            <i class="fa-solid fa-folder-open"></i>
+            <h3>Biểu Mẫu & Tài Liệu Khác</h3>
+            <p>Lưu trữ các file Excel, Word, kịch bản chương trình và các giấy tờ cần thiết khác.</p>
+        </a>
     </div>
+</div>
+
+<footer>
+    &copy; 2026 Môn phái Phật Quang Quyền. Lưu hành nội bộ.
+</footer>
 
 </body>
 </html>
